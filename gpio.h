@@ -8,7 +8,7 @@
 #define GPIO_H
 
 #include <stdint.h>
-#include <stm32f1xx.h>
+#include "stm32f10x.h"
 
 typedef enum {
     gpio_dir_input,

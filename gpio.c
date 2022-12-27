@@ -5,6 +5,7 @@
  */
 
 #include "gpio.h"
+#define GPIO_BSRR_BR0_Pos                    (16U)                             
 
 static void _gpio_enable_port(GPIO_TypeDef *port) {
     int portnum = (((uint32_t)port - GPIOA_BASE) / (GPIOB_BASE - GPIOA_BASE));

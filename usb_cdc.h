@@ -169,10 +169,10 @@ void usb_cdc_interrupt_endpoint_event_handler(uint8_t ep_num, usb_endpoint_event
 
 /* Device lifecycle functions */
 
-void usb_cdc_reset();
-void usb_cdc_enable();
-void usb_cdc_suspend();
-void usb_cdc_frame();
+void usb_cdc_reset(void);
+void usb_cdc_enable(void);
+void usb_cdc_suspend(void);
+void usb_cdc_frame(void);
 
 /* CDC Pins */
 
@@ -194,7 +194,7 @@ typedef enum {
 /* Configuration Changed Hooks */
 
 void usb_cdc_reconfigure_port_pin(int port, cdc_pin_t pin);
-void usb_cdc_reconfigure();
+void usb_cdc_reconfigure(void);
 
 /* CDC Device Definitions */
 
@@ -205,6 +205,6 @@ void usb_cdc_reconfigure();
 
 /* CDC Polling */
 
-void usb_cdc_poll();
+void usb_cdc_poll(void);
 
 #endif /* USB_CDC_H */

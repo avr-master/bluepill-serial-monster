@@ -185,7 +185,7 @@ typedef struct  {
 typedef struct {
     uint8_t  bLength;
     uint8_t  bDescriptorType;
-    uint16_t wString[];
+    uint8_t wString[];
 } __attribute__((packed, aligned(2))) usb_string_descriptor_t;
 
 #define __CAT(x,y) x ## y

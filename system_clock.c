@@ -4,7 +4,7 @@
  * Copyright (c) 2020 Kirill Kotyagin
  */
 
-#include <stm32f1xx.h>
+#include "stm32f10x.h"
 #include "system_clock.h"
 #include "usb.h"
 

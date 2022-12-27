@@ -4,7 +4,7 @@
  * Copyright (c) 2020 Kirill Kotyagin
  */
 
-#include <stm32f1xx.h>
+#include "stm32f10x.h"
 #include "gpio.h"
 #include "device_config.h"
 #include "status_led.h"

@@ -7,7 +7,7 @@
 #ifndef STATUS_LED
 #define STATUS_LED
 
-void status_led_init();
+void status_led_init(void);
 void status_led_set(int on);
 
 #endif /* STATUS_LED */

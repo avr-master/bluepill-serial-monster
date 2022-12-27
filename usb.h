@@ -7,7 +7,7 @@
 #ifndef USB_H
 #define USB_H
 
-void usb_init();
-void usb_poll();
+void usb_init(void);
+void usb_poll(void);
 
 #endif /* USB_H */

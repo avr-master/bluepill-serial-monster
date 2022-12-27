@@ -7,6 +7,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "usb_cdc.h"
 #include "gpio.h"
 #include "cdc_config.h"
@@ -140,7 +141,8 @@ static void cdc_shell_cmd_uart_show(int port) {
              port_index < ((port == -1) ? USB_CDC_NUM_PORTS : port + 1);
              port_index++) {
         const cdc_port_t *cdc_port = &device_config_get()->cdc_config.port_config[port_index];
-        itoa(port_index+1, port_index_str, 10);
+        //itoa(port_index+1, port_index_str, 10);
+				snprintf(port_index_str,sizeof(port_index_str),"%u",port_index+1);
         cdc_shell_write_string(uart_str);
         cdc_shell_write_string(port_index_str);
         cdc_shell_write_string(colon_str);
@@ -507,7 +509,8 @@ void cdc_shell_init() {
 static void cdc_shell_cursor_move_back(int n_symb) {
     if (n_symb) {
         char n_symb_str[32];
-        itoa(n_symb, n_symb_str, 10);
+        //itoa(n_symb, n_symb_str, 10);
+				snprintf(n_symb_str,sizeof(n_symb_str),"%u",n_symb);
         cdc_shell_write_string("\033[");
         cdc_shell_write_string(n_symb_str);
         cdc_shell_write_string("D");

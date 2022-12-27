@@ -9,6 +9,6 @@
 
 #include "usb_std.h"
 
-usb_string_descriptor_t *usb_get_uid_string_descriptor();
+usb_string_descriptor_t *usb_get_uid_string_descriptor(void);
 
 #endif /* USB_UID_H */

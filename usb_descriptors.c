@@ -8,7 +8,7 @@
 #include "usb_cdc.h"
 #include "version.h"
 #include "usb_descriptors.h"
-
+#include <string.h>
 #define USB_CONTROL_ENDPOINT_SIZE           16
 #define USB_CDC_INTERRUPT_ENDPOINT_SIZE     16
 #define USB_CDC_DATA_ENDPOINT_SIZE_SMALL    32
@@ -72,13 +72,44 @@ const usb_endpoint_t usb_endpoints[usb_endpoint_address_last] = {
     },
 };
 
-const usb_string_descriptor_t usb_string_lang                   = USB_ARRAY_DESC(usb_language_code_en_US);
-const usb_string_descriptor_t usb_string_manufacturer           = USB_STRING_DESC("R2AXZ Kirill Kotyagin");
-const usb_string_descriptor_t usb_string_product                = USB_STRING_DESC("Bluepill Serial Monster");
-const usb_string_descriptor_t usb_string_serial                 = USB_STRING_DESC("NO SERIAL"); /* Placeholder, replaced by STM32 UID */
-const usb_string_descriptor_t usb_string_uart_1_interface_name  = USB_STRING_DESC("UART1");
-const usb_string_descriptor_t usb_string_uart_2_interface_name  = USB_STRING_DESC("UART2");
-const usb_string_descriptor_t usb_string_uart_3_interface_name  = USB_STRING_DESC("UART3");
+const usb_string_descriptor_t usb_string_lang ={
+.bLength = sizeof(usb_language_code_en_US),
+.bDescriptorType = usb_descriptor_type_string,
+.wString = {0x04,0x09}
+};                 
+
+const usb_string_descriptor_t usb_string_manufacturer = {
+.bLength = 43,
+.bDescriptorType = usb_descriptor_type_string,
+.wString = {'R',0,'2',0,'A',0,'X',0,'Z',0,' ',0,'K',0,'i',0,'r',0,'i',0,'l',0,'l',0,' ',0,'K',0,'o',0,'t',0,'y',0,'a',0,'g',0,'i',0,'n',0}
+};    
+const usb_string_descriptor_t usb_string_product = {
+.bLength = 47,
+.bDescriptorType = usb_descriptor_type_string,
+.wString = {'B',0,'l',0,'u',0,'e',0,'p',0,'i',0,'l',0,'l',0,' ',0,'S',0,'e',0,'r',0,'i',0,'a',0,'l',0,' ',0,'M',0,'o',0,'n',0,'s',0,'t',0,'e',0,'r',0}
+};                
+
+const usb_string_descriptor_t usb_string_serial = {
+.bLength = 20,
+.bDescriptorType = usb_descriptor_type_string,
+.wString = {'1',0,'2',0,'3',0,' ',0,'3',0,'2',0,'1',0,'0',0,'0',0}/* Placeholder, replaced by STM32 UID */
+};
+
+const usb_string_descriptor_t usb_string_uart_1_interface_name = {
+.bLength = 14,
+.bDescriptorType = usb_descriptor_type_string,
+.wString = {'U',0,'S',0,'A',0,'R',0,'T',0,'1',0}
+};
+const usb_string_descriptor_t usb_string_uart_2_interface_name = {
+.bLength = 14,
+.bDescriptorType = usb_descriptor_type_string,
+.wString = {'U',0,'S',0,'A',0,'R',0,'T',0,'2',0}
+};
+const usb_string_descriptor_t usb_string_uart_3_interface_name = {
+.bLength = 14,
+.bDescriptorType = usb_descriptor_type_string,
+.wString = {'U',0,'S',0,'A',0,'R',0,'T',0,'3',0}
+};
 
 const usb_string_descriptor_t *usb_string_descriptors[usb_string_index_last] = {
     &usb_string_lang,
@@ -112,7 +143,7 @@ const usb_device_configuration_descriptor_t usb_configuration_descriptor = {
         .bLength                = sizeof(usb_configuration_descriptor.config),
         .bDescriptorType        = usb_descriptor_type_configuration,
         .wTotalLength           = sizeof(usb_configuration_descriptor),
-        .bNumInterfaces         = 6,
+        .bNumInterfaces         = 2,//6 для 3 портов
         .bConfigurationValue    = 1,
         .iConfiguration         = usb_string_index_none,
         .bmAttributes           = USB_CFG_ATTR_RESERVED,
@@ -200,7 +231,7 @@ const usb_device_configuration_descriptor_t usb_configuration_descriptor = {
         .wMaxPacketSize         = USB_CDC_DATA_0_ENDPOINT_SIZE,
         .bInterval              = 0,
     },
-    .comm_iad_1 = {
+   /* .comm_iad_1 = {
         .bLength                = sizeof(usb_configuration_descriptor.comm_iad_1),
         .bDescriptorType        = usb_descriptor_type_interface_assoc,
         .bFirstInterface        = usb_interface_cdc_1,
@@ -363,6 +394,6 @@ const usb_device_configuration_descriptor_t usb_configuration_descriptor = {
         .bmAttributes           = usb_endpoint_type_bulk,
         .wMaxPacketSize         = USB_CDC_DATA_2_ENDPOINT_SIZE,
         .bInterval              = 0,
-    },
+    },*/
 
 };

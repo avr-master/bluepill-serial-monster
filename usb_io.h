@@ -10,7 +10,7 @@
 /* Buffer table */
 
 #include <stddef.h>
-#include <stm32f1xx.h>
+#include "stm32f10x.h"
 #include "circ_buf.h"
 #include "usb.h"
 #include "usb_std.h"
@@ -68,8 +68,8 @@ typedef struct {
 
 /* USB IO Initialization */
 
-void usb_io_init();
-void usb_io_reset();
+void usb_io_init(void);
+void usb_io_reset(void);
 
 /* Get Number of RX/TX Bytes Available  */
 

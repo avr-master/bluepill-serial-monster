@@ -8,15 +8,15 @@
 #define VERSION_H
 
 #ifndef DEVICE_VERSION_MAJOR
-#define DEVICE_VERSION_MAJOR    0
+#define DEVICE_VERSION_MAJOR    2
 #endif
 
 #ifndef DEVICE_VERSION_MINOR
-#define DEVICE_VERSION_MINOR    0
+#define DEVICE_VERSION_MINOR    6
 #endif
 
 #ifndef DEVICE_VERSION_REVISION
-#define DEVICE_VERSION_REVISION 0
+#define DEVICE_VERSION_REVISION 5
 #endif
 
 #define __DEVICE_VERSION_STRING(major,minor,revision) "v" #major "." #minor "." #revision

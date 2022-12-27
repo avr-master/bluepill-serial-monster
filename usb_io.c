@@ -4,7 +4,7 @@
  * Copyright (c) 2020 Kirill Kotyagin
  */
 
-#include <stm32f1xx.h>
+#include "stm32f10x.h"
 #include "system_interrupts.h"
 #include "status_led.h"
 #include "usb_descriptors.h"
@@ -64,7 +64,7 @@ void usb_io_init() {
     GPIOA->CRH |= GPIO_CRH_CNF12_0;
     /* Initialize USB */
     NVIC_DisableIRQ(USB_LP_CAN1_RX0_IRQn);
-    if (SystemCoreClock != RCC_MAX_FREQUENCY) {
+    if (SystemCoreClock != 72000000UL) {
         RCC->CFGR |= RCC_CFGR_USBPRE;
     }
     RCC->APB1ENR |= RCC_APB1ENR_USBEN;

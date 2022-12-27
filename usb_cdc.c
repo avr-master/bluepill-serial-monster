@@ -5,7 +5,7 @@
  */
 
 #include <string.h>
-#include <stm32f1xx.h>
+#include "stm32f10x.h"
 #include "system_interrupts.h"
 #include "circ_buf.h"
 #include "usb_std.h"
@@ -18,6 +18,9 @@
 #include "usb_cdc.h"
 
 /* USB CDC Device Enabled Flag */
+#define DMA_CCR_EN_Pos                      (0U)                               
+#define DMA_CCR_EN_Msk                      (0x1U << DMA_CCR_EN_Pos)           /*!< 0x00000001 */
+#define DMA_CCR_EN                          DMA_CCR_EN_Msk                     /*!< Channel enable */
 
 static uint8_t usb_cdc_enabled = 0;
 static uint8_t usb_cdc_config_mode = 0;
@@ -611,11 +614,11 @@ void usb_cdc_reset() {
             usart->CR3 |= USART_CR3_CTSE;
         }
         usb_cdc_set_line_coding(port, &usb_cdc_default_line_coding, 0);
-        dma_rx_ch->CCR |= DMA_CCR_MINC | DMA_CCR_CIRC | DMA_CCR_PL_0;
+        dma_rx_ch->CCR |= DMA_CCR1_MINC | DMA_CCR1_CIRC | DMA_CCR1_PL_0;
         dma_rx_ch->CPAR = (uint32_t)&usart->DR;
         dma_rx_ch->CMAR = (uint32_t)usb_cdc_states[port].rx_buf.data;
         dma_rx_ch->CNDTR = USB_CDC_BUF_SIZE;
-        dma_tx_ch->CCR |= DMA_CCR_MINC | DMA_CCR_DIR | DMA_CCR_TCIE;
+        dma_tx_ch->CCR |= DMA_CCR1_MINC |  DMA_CCR1_DIR | DMA_CCR1_TCIE;
         dma_tx_ch->CPAR = (uint32_t)&usart->DR;
     }
     NVIC_SetPriority(USART1_IRQn, SYSTEM_INTERRUTPS_PRIORITY_CRITICAL);
